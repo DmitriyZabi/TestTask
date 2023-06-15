@@ -1,24 +1,32 @@
-import { useDispatch } from 'react-redux'
-import { fetchPostsRequest } from './redux/posts/actions'
-import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { IStore } from './redux/store'
+import {
+  Routes,
+  Route,
+  BrowserRouter as Router,
+  Navigate,
+} from 'react-router-dom'
+import { HomePage } from './pages/HomePage'
+import { Header } from './components/layout/header/Header'
+import { Main } from './components/layout/main/Main'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { AboutPage } from './pages/AboutPage'
+import { UserInfoPage } from './pages/UserInfoPage'
 
 function App() {
-  const dispatch = useDispatch()
-  const { data, error, isLoading } = useSelector((store: IStore) => store.posts)
-
-  useEffect(() => {
-    dispatch(fetchPostsRequest())
-  }, [dispatch])
-
-  if (isLoading) {
-    return <>Loafong...</>
-  }
-  if (error !== null) {
-    return <>Error: {error}</>
-  }
-  return <>{data !== null && data.map((x) => <p>{x.title}</p>)}</>
+  return (
+    <>
+      <Header />
+      <Main>
+        <Router>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/userinfo" element={<UserInfoPage />} />
+            <Route path="/*" element={<Navigate replace to="/" />} />
+          </Routes>
+        </Router>
+      </Main>
+    </>
+  )
 }
 
 export default App

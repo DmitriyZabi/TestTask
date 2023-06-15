@@ -1,0 +1,13 @@
+.nav {
+  .link {
+    $color: #818181;
+    color: #{$color};
+    &:active,
+    &:visited {
+      color: #{$color};
+    }
+    &:hover {
+      color: #{darken($color, 30%)};
+    }
+  }
+}
