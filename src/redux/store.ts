@@ -3,9 +3,11 @@ import rootReducer from './rootReducer'
 import createSagaMiddleware from 'redux-saga'
 import { IPostsState } from './posts/models'
 import { rootSaga } from './rootSaga'
+import { ICommentsState } from './comments/models'
 
 export interface IStore {
   posts: IPostsState
+  comments: ICommentsState
 }
 
 const sagaMiddleware = createSagaMiddleware()
