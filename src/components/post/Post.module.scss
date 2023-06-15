@@ -1,0 +1,8 @@
+.image {
+  $size: 60px;
+  width: #{$size};
+  height: #{$size};
+  border-radius: 50%;
+  background-color: #d1d1d1;
+  opacity: 0.85;
+}

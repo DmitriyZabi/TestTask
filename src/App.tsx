@@ -20,7 +20,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/userinfo" element={<UserInfoPage />} />
+            <Route path="/userinfo/:userId" element={<UserInfoPage />} />
             <Route path="/*" element={<Navigate replace to="/" />} />
           </Routes>
         </Router>
