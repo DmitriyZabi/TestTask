@@ -7,12 +7,12 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { IStore } from '../../redux/store'
 import { fetchCommentsRequest } from '../../redux/comments/actions'
-import Accordion from 'react-bootstrap/Accordion'
 import Spinner from 'react-bootstrap/Spinner'
 import Alert from 'react-bootstrap/Alert'
 import { Comments } from '../comments/Comments'
 import { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button'
+import { ChevronDown as ArrowIcon } from 'react-bootstrap-icons'
 
 export function Post(props: IProps) {
   // comments
@@ -62,8 +62,18 @@ export function Post(props: IProps) {
           <Card.Text>{props.body}</Card.Text>
           <Card>
             <Card.Body>
-              <Button variant="secondary" onClick={toggleComments}>
+              <Button
+                className={[
+                  styles.btnComments,
+                  isCommentsOpened ? styles.opened : '',
+                ]
+                  .filter((x) => x != '')
+                  .join(' ')}
+                variant="secondary"
+                onClick={toggleComments}
+              >
                 Comments
+                <ArrowIcon className={styles.arrow} />
               </Button>
               {isCommentsOpened &&
                 (function () {
