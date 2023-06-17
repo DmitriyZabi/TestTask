@@ -3,18 +3,32 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import styles from './Header.module.scss'
+import { NavLink } from 'react-router-dom'
+import { useState } from 'react'
 
 export function Header() {
   const expand = false
+  const [show, setShow] = useState(false)
+  const toggleMenu = () => {
+    setShow(!show)
+  }
+
   return (
     <Navbar bg="primary" variant="dark" expand={false} className="mb-3">
       <Container fluid>
         <Navbar.Brand href="/">Test Task</Navbar.Brand>
-        <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+        <Navbar.Toggle
+          aria-controls={`offcanvasNavbar-expand-${expand}`}
+          onClick={toggleMenu}
+        />
         <Navbar.Offcanvas
           id={`offcanvasNavbar-expand-${expand}`}
           aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
           placement="start"
+          show={show}
+          onHide={() => {
+            setShow(false)
+          }}
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
@@ -25,10 +39,20 @@ export function Header() {
             <Nav
               className={`justify-content-end flex-grow-1 pe-3 ${styles.nav}`}
             >
-              <Nav.Link className={styles.link} href="/">
+              <Nav.Link
+                as={NavLink}
+                className={styles.link}
+                to="/"
+                onClick={toggleMenu}
+              >
                 Главная
               </Nav.Link>
-              <Nav.Link className={styles.link} href="/about">
+              <Nav.Link
+                as={NavLink}
+                className={styles.link}
+                to="/about"
+                onClick={toggleMenu}
+              >
                 Обо мне
               </Nav.Link>
             </Nav>

@@ -1,6 +1,6 @@
 import { AxiosError, AxiosResponse } from 'axios'
 import { fetchPosts } from '../../api/posts'
-import { call, put, takeEvery } from 'redux-saga/effects'
+import { call, delay, put, takeEvery } from 'redux-saga/effects'
 import { IPost } from './models'
 import {
   fetchPostsFailure,
@@ -9,10 +9,16 @@ import {
 } from './actions'
 import { FETCH_POSTS_REQUEST } from '../constants'
 
-function* handleFetchPosts() {
+function* handleFetchPosts({
+  payload,
+}: {
+  payload: string | null
+  type: string
+}) {
   try {
     yield put(fetchPostsLoading(true))
-    const response: AxiosResponse<IPost[]> = yield call(fetchPosts)
+    yield delay(500)
+    const response: AxiosResponse<IPost[]> = yield call(fetchPosts, payload)
     yield put(fetchPostsSuccess(response.data))
   } catch (e) {
     const error = e as AxiosError

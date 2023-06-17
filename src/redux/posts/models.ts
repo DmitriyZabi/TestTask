@@ -20,6 +20,7 @@ export interface IPostsState {
 
 export interface IActionFetchPostsRequest {
   type: typeof FETCH_POSTS_REQUEST
+  payload: string | null
 }
 
 export interface IActionFetchPostsSuccess {

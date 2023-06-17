@@ -11,7 +11,7 @@ export function HomePage() {
   const { data, error, isLoading } = useSelector((store: IStore) => store.posts)
 
   useEffect(() => {
-    dispatch(fetchPostsRequest())
+    dispatch(fetchPostsRequest(null))
   }, [dispatch])
 
   return (
@@ -24,7 +24,9 @@ export function HomePage() {
         if (error !== null) {
           return <Alert variant="danger">{`Fetch posts error: ${error}`}</Alert>
         }
-        return <>{data !== null && <Posts data={data} />}</>
+        return (
+          <>{data !== null && <Posts data={data} isShowPostHeader={true} />}</>
+        )
       })()}
     </>
   )

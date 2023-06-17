@@ -4,10 +4,12 @@ import createSagaMiddleware from 'redux-saga'
 import { IPostsState } from './posts/models'
 import { rootSaga } from './rootSaga'
 import { ICommentsState } from './comments/models'
+import { IUsersState } from './users/models'
 
 export interface IStore {
   posts: IPostsState
   comments: ICommentsState
+  users: IUsersState
 }
 
 const sagaMiddleware = createSagaMiddleware()

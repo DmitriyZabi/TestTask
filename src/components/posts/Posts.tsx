@@ -11,10 +11,10 @@ import Alert from 'react-bootstrap/Alert'
 
 export function Posts(props: IProps) {
   const filter = (data: IPost[]) => {
-    if (!filterText) {
+    if (!filterText.trim()) {
       return data
     }
-    return data.filter((x) => x.title.includes(filterText))
+    return data.filter((x) => x.title.includes(filterText.trim()))
   }
   const sort = (data: IPost[]) => {
     switch (sortType) {
@@ -32,12 +32,11 @@ export function Posts(props: IProps) {
         return data
     }
   }
-  const paginate = (data: IPost[], pageSize = 3) => {
-    return data.slice(
+  const paginate = (data: IPost[], pageSize = 3) =>
+    data.slice(
       (page - 1) * pageSize,
       page * pageSize >= data.length ? data.length : page * pageSize
     )
-  }
 
   // const
   const pageSize = 10
@@ -87,7 +86,14 @@ export function Posts(props: IProps) {
       <div className={styles.list}>
         {data.length ? (
           paginate(data, pageSize).map((x: IPost) => (
-            <Post key={x.id} userId={x.userId} title={x.title} body={x.body} />
+            <Post
+              key={x.id}
+              postId={x.id}
+              userId={x.userId}
+              title={x.title}
+              body={x.body}
+              isShowHeader={props.isShowPostHeader}
+            />
           ))
         ) : (
           <Alert variant="warning">Посты не найдены</Alert>

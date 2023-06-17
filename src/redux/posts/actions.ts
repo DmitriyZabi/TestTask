@@ -6,8 +6,8 @@ import {
 } from '../constants'
 import { IPost, PostsActions } from './models'
 
-export const fetchPostsRequest = (): PostsActions => {
-  return { type: FETCH_POSTS_REQUEST }
+export const fetchPostsRequest = (payload: string | null): PostsActions => {
+  return { type: FETCH_POSTS_REQUEST, payload }
 }
 
 export const fetchPostsSuccess = (payload: IPost[]): PostsActions => {

@@ -25,7 +25,7 @@ export interface IActionFetchCommentsRequest {
 }
 
 export interface IActionFetchCommentsSuccessPayload {
-  postId: number
+  postId: string
   data: IComment[]
 }
 

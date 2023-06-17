@@ -1,6 +1,6 @@
 import { AxiosError, AxiosResponse } from 'axios'
 import { fetchComments } from '../../api/comments'
-import { call, put, takeEvery } from 'redux-saga/effects'
+import { call, delay, put, takeEvery } from 'redux-saga/effects'
 import {
   fetchCommentsFailure,
   fetchCommentsLoading,
@@ -9,9 +9,10 @@ import {
 import { IComment } from './models'
 import { FETCH_COMMENTS_REQUEST } from '../constants'
 
-function* handleFetchComments({ payload }: { payload: number; type: string }) {
+function* handleFetchComments({ payload }: { payload: string; type: string }) {
   try {
     yield put(fetchCommentsLoading(true))
+    yield delay(500)
     const response: AxiosResponse<IComment[]> = yield call(
       fetchComments,
       payload

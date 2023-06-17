@@ -1,0 +1,51 @@
+.userCard {
+  max-width: 540px;
+  .header {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+
+    .name {
+      font-size: 18px;
+    }
+
+    .username {
+      font-size: 24px;
+    }
+
+    .contacts {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+
+      .email {
+        font-size: 18px;
+      }
+
+      .phone {
+        font-weight: bold;
+        font-size: 20px;
+      }
+    }
+  }
+
+  .body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+
+    .title {
+      font-weight: bold;
+      font-size: 20px;
+      padding-bottom: 6px;
+    }
+
+    .company,
+    .address {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
