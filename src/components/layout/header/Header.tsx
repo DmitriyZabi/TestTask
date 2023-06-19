@@ -15,8 +15,7 @@ export function Header() {
 
   return (
     <Navbar bg="primary" variant="dark" expand={false} className="mb-3">
-      <Container fluid>
-        <Navbar.Brand href="/">Test Task</Navbar.Brand>
+      <Container>
         <Navbar.Toggle
           aria-controls={`offcanvasNavbar-expand-${expand}`}
           onClick={toggleMenu}
